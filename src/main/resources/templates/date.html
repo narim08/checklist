@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DATE</title>
+</head>
+<body>
+<div>
+    <h1 th:text="'챌린지: ' + ${date}"></h1>
+    <form th:action="@{'/date/' + ${date} + '/update'}" method="post">
+        <div>
+            <label>
+                <input type="checkbox" name="task1" th:checked="${checklist.task1Completed}"> 공부
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="task2" th:checked="${checklist.task2Completed}"> 산책
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="task3" th:checked="${checklist.task3Completed}"> 운동
+            </label>
+        </div>
+        <button type="submit">저장</button>
+    </form>
+    <br>
+    <a href="/">← 메인 페이지로 이동</a>
+</div>
+</body>
+</html>

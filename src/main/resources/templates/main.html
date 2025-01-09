@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MAIN</title>
+  <style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 10px;
+        margin: 20px;
+    }
+    .date-box {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        cursor: pointer;
+    }
+    .completed {
+        background-color: #90EE90;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <h1>100일 챌린지</h1>
+  <div class="grid-container">
+    <a th:each="challenge : ${challenges}"
+       th:href="@{'/date/' + ${challenge.date}}"
+       class="date-box"
+       th:classappend="${challenge.allCompleted} ? 'completed'"
+       th:text="${#temporals.format(challenge.date, 'MM/dd')}">
+    </a>
+  </div>
+</div>
+</body>
+</html>
