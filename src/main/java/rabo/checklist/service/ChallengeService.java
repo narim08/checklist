@@ -33,4 +33,10 @@ public class ChallengeService {
             repository.save(checklist);
         }
     }
+
+    public int getCompletedDays() {
+        return (int) repository.findAll().stream()
+                .filter(ChallengeChecklist::isAllCompleted)
+                .count();
+    }
 }
