@@ -115,7 +115,7 @@
 
         // 마커 우클릭으로 삭제
         markers.forEach(function(markerObj) {
-            kakao.maps.event.addListener(markerObj.marker, 'dblclick', function() {
+            kakao.maps.event.addListener(markerObj.marker, 'rightclick', function() {
                 if (markerObj.id) {
                     fetch(`/api/locations/${markerObj.id}`, {
                         method: 'DELETE'
