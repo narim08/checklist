@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rabo.checklist.domain.ChallengeChecklist;
+import rabo.checklist.domain.Location;
 import rabo.checklist.repository.ChallengeChecklistRepository;
+import rabo.checklist.repository.LocationRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +15,9 @@ import java.util.List;
 public class ChallengeService {
     @Autowired
     private ChallengeChecklistRepository repository;
+
+    @Autowired
+    private LocationRepository locationRepository;
 
     public List<ChallengeChecklist> getAllChallenges() {
         return repository.findAll();
@@ -38,5 +43,23 @@ public class ChallengeService {
         return (int) repository.findAll().stream()
                 .filter(ChallengeChecklist::isAllCompleted)
                 .count();
+    }
+
+    @Transactional
+    public void addLocation(LocalDate date, Double latitude, Double longitude) {
+        ChallengeChecklist checklist = repository.findByDate(date);
+        if (checklist != null) {
+            Location location = new Location();
+            location.setLatitude(latitude);
+            location.setLongitude(longitude);
+
+            checklist.addLocation(location);
+            repository.save(checklist);
+        }
+    }
+
+    @Transactional
+    public void removeLocation(Long locationId) {
+        locationRepository.deleteById(locationId);
     }
 }

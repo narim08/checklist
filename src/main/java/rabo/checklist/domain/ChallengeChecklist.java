@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "challenge_checklist")
@@ -28,4 +30,18 @@ public class ChallengeChecklist {
 
     @Column(nullable = false)
     private boolean allCompleted = false;
+
+
+    @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Location> locations = new ArrayList<>();
+
+    public void addLocation(Location location) {
+        locations.add(location);
+        location.setChecklist(this);
+    }
+
+    public void removeLocation(Location location) {
+        locations.remove(location);
+        location.setChecklist(null);
+    }
 }

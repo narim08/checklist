@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import rabo.checklist.domain.ChallengeChecklist;
+import rabo.checklist.dto.LocationDTO;
 import rabo.checklist.service.ChallengeService;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ChallengeController {
@@ -30,10 +32,24 @@ public class ChallengeController {
 
     @GetMapping("/date/{date}")
     public String datePage(@PathVariable String date, Model model) {
+        date = date.replace("\"", "");
         LocalDate parsedDate = LocalDate.parse(date);
         ChallengeChecklist checklist = challengeService.getChallengeByDate(parsedDate);
+
+        // Location 정보를 DTO로 변환
+        List<LocationDTO> locationDTOs = checklist.getLocations().stream()
+            .map(location -> {
+                LocationDTO dto = new LocationDTO();
+                dto.setId(location.getId());
+                dto.setLatitude(location.getLatitude());
+                dto.setLongitude(location.getLongitude());
+                return dto;
+            })
+            .collect(Collectors.toList());
+
         model.addAttribute("checklist", checklist);
         model.addAttribute("date", date);
+        model.addAttribute("locations", locationDTOs);
         return "date"; // date.html
     }
 
