@@ -175,9 +175,42 @@
 
     // 경로 지우기 함수
     function clearPath() {
+        // 경로 삭제
         if (polyline) {
             polyline.setMap(null);
             isPathVisible = false;
+        }
+    
+        // 모든 마커의 ID를 수집하여 서버에서 삭제
+        const markerIds = markers
+            .filter(markerObj => markerObj.id)
+            .map(markerObj => markerObj.id);
+    
+        // 서버에서 모든 위치 데이터 삭제
+        if (markerIds.length > 0) {
+            Promise.all(markerIds.map(id =>
+                fetch(`/api/locations/${id}`, {
+                    method: 'DELETE'
+                })
+            )).then(() => {
+                // 모든 마커를 지도에서 제거
+                markers.forEach(markerObj => {
+                    markerObj.marker.setMap(null);
+                });
+                // markers 배열 비우기
+                markers = [];
+                
+                // 페이지 새로고침하여 변경사항 반영
+                location.reload();
+            }).catch(error => {
+                console.error("마커 삭제 중 오류 발생:", error);
+            });
+        } else {
+            // 서버에 저장된 마커가 없는 경우에도 화면의 마커는 삭제
+            markers.forEach(markerObj => {
+                markerObj.marker.setMap(null);
+            });
+            markers = [];
         }
     }
 
