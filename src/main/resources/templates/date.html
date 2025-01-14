@@ -41,6 +41,11 @@
     </div>
     <div id="map"></div>
 
+    <div class="diary-section">
+        <h2>오늘의 일기</h2>
+        <div class="diary-content" th:text="${diary}"></div>
+    </div>
+
     <a href="/" class="back-link">← 메인 페이지로 이동</a>
 </div>
 
@@ -180,12 +185,12 @@
             polyline.setMap(null);
             isPathVisible = false;
         }
-    
+
         // 모든 마커의 ID를 수집하여 서버에서 삭제
         const markerIds = markers
             .filter(markerObj => markerObj.id)
             .map(markerObj => markerObj.id);
-    
+
         // 서버에서 모든 위치 데이터 삭제
         if (markerIds.length > 0) {
             Promise.all(markerIds.map(id =>
@@ -199,7 +204,7 @@
                 });
                 // markers 배열 비우기
                 markers = [];
-                
+
                 // 페이지 새로고침하여 변경사항 반영
                 location.reload();
             }).catch(error => {
