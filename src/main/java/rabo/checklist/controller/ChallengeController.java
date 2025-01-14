@@ -21,6 +21,9 @@ public class ChallengeController {
     @Autowired
     private ChallengeService challengeService;
 
+    @Value("${kakao.maps.api.key}")
+    private String kakaoMapsApiKey;
+
     @GetMapping("/")
     public String mainPage(Model model) {
         List<ChallengeChecklist> challenges = challengeService.getAllChallenges();
@@ -50,6 +53,7 @@ public class ChallengeController {
         model.addAttribute("checklist", checklist);
         model.addAttribute("date", date);
         model.addAttribute("locations", locationDTOs);
+        model.addAttribute("kakaoMapsApiKey", kakaoMapsApiKey);
         return "date"; // date.html
     }
 
