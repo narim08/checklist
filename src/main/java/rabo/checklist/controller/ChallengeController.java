@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import rabo.checklist.domain.ChallengeChecklist;
 import rabo.checklist.dto.LocationDTO;
 import rabo.checklist.service.ChallengeService;
+import rabo.checklist.service.DiaryService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +22,9 @@ public class ChallengeController {
 
     @Autowired
     private ChallengeService challengeService;
+
+    @Autowired
+    private DiaryService diaryService;
 
     @Value("${kakao.maps.api.key}")
     private String kakaoMapsApiKey;
@@ -50,6 +54,10 @@ public class ChallengeController {
                 return dto;
             })
             .collect(Collectors.toList());
+
+        //일기 생성
+        String diary = diaryService.generateDiary(checklist);
+        model.addAttribute("diary", diary);
 
         model.addAttribute("checklist", checklist);
         model.addAttribute("date", date);
