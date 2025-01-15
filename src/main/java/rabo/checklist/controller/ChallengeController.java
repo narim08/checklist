@@ -33,6 +33,7 @@ public class ChallengeController {
     public String mainPage(Model model) {
         List<ChallengeChecklist> challenges = challengeService.getAllChallenges();
         int completedDays = challengeService.getCompletedDays();
+
         model.addAttribute("challenges", challenges);
         model.addAttribute("completedDays", completedDays);
         return "main"; // main.html
