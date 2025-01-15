@@ -1,6 +1,7 @@
 package rabo.checklist.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rabo.checklist.domain.ChallengeChecklist;
@@ -30,11 +31,16 @@ public class ChallengeService {
     @Transactional
     public void updateChecklist(LocalDate date, boolean task1, boolean task2, boolean task3) {
         ChallengeChecklist checklist = repository.findByDate(date);
+
         if (checklist != null) {
             checklist.setTask1Completed(task1);
             checklist.setTask2Completed(task2);
             checklist.setTask3Completed(task3);
-            checklist.setAllCompleted(task1 && task2 && task3);
+
+            int completedTasks = (task1 ? 1 : 0) + (task2 ? 1 : 0) + (task3 ? 1 : 0);
+            checklist.setPartiallyCompleted(completedTasks == 1 || completedTasks == 2);
+            checklist.setAllCompleted(completedTasks == 3);
+
             repository.save(checklist);
         }
     }
@@ -62,4 +68,5 @@ public class ChallengeService {
     public void removeLocation(Long locationId) {
         locationRepository.deleteById(locationId);
     }
+
 }
