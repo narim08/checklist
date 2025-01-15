@@ -33,8 +33,7 @@ public class DiaryService {
         StringBuilder prompt = new StringBuilder();
         String dateStr = checklist.getDate().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
 
-        prompt.append("날짜: ").append(dateStr);
-        prompt.append("\n");
+        prompt.append("날짜: ").append(dateStr).append("\n");
 
         //체크리스트 정보 추가
         prompt.append("오늘은 ");
