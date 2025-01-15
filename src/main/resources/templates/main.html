@@ -90,8 +90,12 @@
     }
 
     .completed {
-        background-color: #90EE90;
+        background-color: #90EE90; /* 녹색 */
         border-color: #70DD70;
+    }
+    .partially-completed {
+        background-color: #f8f6b4;  /* 노란색 */
+        border-color: #e2dc69;
     }
 
     @media (max-width: 768px) {
@@ -120,7 +124,7 @@
     <a th:each="challenge : ${challenges}"
        th:href="@{'/date/' + ${challenge.date}}"
        class="date-box"
-       th:classappend="${challenge.allCompleted} ? 'completed'"
+       th:classappend="${challenge.allCompleted} ? 'completed' : (${challenge.partiallyCompleted} ? 'partially-completed' : '')"
        th:text="${#temporals.format(challenge.date, 'MM/dd')}">
     </a>
   </div>
