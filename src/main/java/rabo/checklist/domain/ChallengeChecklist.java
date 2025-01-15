@@ -29,7 +29,10 @@ public class ChallengeChecklist {
     private boolean task3Completed = false;
 
     @Column(nullable = false)
-    private boolean allCompleted = false;
+    private boolean allCompleted = false; //모두 완료: 녹색
+
+    @Column(nullable = false)
+    private boolean partiallyCompleted = false; //1~2개 완료: 노란색
 
 
     @OneToMany(mappedBy = "checklist", cascade = CascadeType.ALL, orphanRemoval = true)
