@@ -56,6 +56,7 @@ v3
 ---
 
 -API 명세서
-![image](https://github.com/user-attachments/assets/bb2b8eb8-1bac-49d5-ab7b-865fd8a94529)
+![스크린샷 2025-01-23 142722](https://github.com/user-attachments/assets/6ceb1b90-836b-44cb-89c3-a2ffea0175ea)
+
 
 
