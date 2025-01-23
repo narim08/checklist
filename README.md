@@ -1,3 +1,5 @@
+[100일 챌린지 웹 사이트]
+
 2025.01.09
 v1
 
@@ -43,6 +45,9 @@ v3
 메인 페이지: 체크리스트를 3개 모두 완료하면 녹색으로 표시하던 기존 버전에서 1~2개 완료시엔 노란색으로 표시하도록 추가
 ![스크린샷 2025-01-21 122653](https://github.com/user-attachments/assets/4dc4e9f1-7879-43b3-a876-1e629f256bc7)
 
+
+=> 개발일지
+https://rim08.tistory.com/category/%F0%9F%8C%9FProject/Challenge%20-%20100%EC%9D%BC%20%EC%B1%8C%EB%A6%B0%EC%A7%80%20%EC%9B%B9
 
 
 ---
