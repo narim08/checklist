@@ -45,7 +45,7 @@ v3
 
 
 
-
+---
 ---
 
 
@@ -53,5 +53,9 @@ v3
 ![스크린샷 2025-01-23 134346](https://github.com/user-attachments/assets/e7275c11-b78c-4e63-b34d-c4f08dd96387)
 
 
+---
+
 -API 명세서
 ![image](https://github.com/user-attachments/assets/bb2b8eb8-1bac-49d5-ab7b-865fd8a94529)
+
+
