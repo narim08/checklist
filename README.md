@@ -46,8 +46,6 @@ v3
 ![스크린샷 2025-01-21 122653](https://github.com/user-attachments/assets/4dc4e9f1-7879-43b3-a876-1e629f256bc7)
 
 
-=> 개발일지
-https://rim08.tistory.com/category/%F0%9F%8C%9FProject/Challenge%20-%20100%EC%9D%BC%20%EC%B1%8C%EB%A6%B0%EC%A7%80%20%EC%9B%B9
 
 
 ---
